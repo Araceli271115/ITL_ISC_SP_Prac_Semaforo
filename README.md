@@ -1,9 +1,8 @@
 -------------------Instituto Tecnológico de Leon-------------------
-               Ingeniería en Sistemas Computacionales  
+-------------Ingeniería en Sistemas Computacionales----------------  
 -----------------------Sistemas Programables-----------------------
 
-Práctica: Semáforo Peatonal
-Autor: Araceli Marlen Guzmán Cáceres
+Práctica: Semáforo Peatonal ------------------------------------------  Autor: Araceli Marlen Guzmán Cáceres----------------------------------
 
 
 En esta pŕactica se realiza un sistema que permite al usuario manipular un semáforo el cual esta simulado en un circuito con 3 LEDs, un botón, un potenciometro y una bocina, este mismo puede regular el tiempo minimo de cruce de automóviles en un cruce peatonal.
