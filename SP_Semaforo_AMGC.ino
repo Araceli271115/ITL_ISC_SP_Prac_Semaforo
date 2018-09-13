@@ -4,8 +4,10 @@
 #define led_rojo 9
 #define boton_1 7
 #define pot_1 A8
+#define bocina 2
 
 int valor_pot=0;                    //inicializamos el valor del potenciometro en 0
+boolean valor_boton_1=HIGH;          //inicializamos el boton como precionado
 
 void setup() {
   Serial.begin(9600);             //inicializar el puerto serie
@@ -17,21 +19,30 @@ void setup() {
 
 void loop() {
      valor_pot=analogRead(pot_1);  //asigna a valor_pot el valor que se este leyendo del potenciometro
-     
-  digitalWrite(led_verde,HIGH);   //se aprende led Verde
-    delay(valor_pot*3);                                 //tiempo de espera para que no pueda apachurrar el boton hasta que haya pasado un tiempo predeterminado
-   if(digitalRead(boton_1)==LOW){      //hasta que que el boton cambie a low
-    digitalWrite(led_verde,LOW);    //se apaga led verde
-    delay(1000);                                    //se da un tiempo de espera de transicion
-    digitalWrite(led_amarillo,HIGH);      //se prende el led amarillo 
-    delay(2000);                                       //se da un tiempo en el que el led amarillo estará encendido
-    digitalWrite(led_amarillo,LOW);     //se apaga el led amarillo
-    delay(2000);                                         //tiempo de espera de transicion entre led amarillo y rojo
-    digitalWrite(led_rojo,HIGH);              //se enciende el led rojo 
-    delay(4000);                                        //tiempo en el que el led rojo estara encendido
-    digitalWrite(led_rojo,LOW);             //se apaga el led rojo
-    delay(2000);
-    
+    digitalWrite(led_verde,HIGH);
+   while(digitalRead(boton_1)==LOW){
+    valor_boton_1=LOW;
    }
+    if(valor_boton_1==LOW){          //hasta que que el boton cambie a low
+    digitalWrite(led_verde,LOW);           //se apaga led verde
+    delay(1000);                           //se da un tiempo de espera de transicion
+    digitalWrite(led_amarillo,HIGH);       //se prende el led amarillo 
+    delay(2000);                           //se da un tiempo en el que el led amarillo estará encendido
+    digitalWrite(led_amarillo,LOW);        //se apaga el led amarillo
+    delay(2000);                           //tiempo de espera de transicion entre led amarillo y rojo
+    tone(bocina,valor_pot);                //se prende el tono de la bocina  con una frecuencia que este pasando el potenciometro 
+    digitalWrite(led_rojo,HIGH);           //se enciende el led rojo 
+    delay(4000);                           //tiempo en el que el led rojo estara encendido
+    digitalWrite(led_rojo,LOW);            //se apaga el led rojo
+    noTone(bocina);                        //se apaga el tono de la bocina
+    delay(2000);
+
+      digitalWrite(led_verde,HIGH);
+      delay(valor_pot*10);                    //tiempo de espera para que no pueda precionar el boton hasta que haya pasado un tiempo predeterminado
+      valor_boton_1=HIGH;
+   }
+  
+  
+   
 
 }
