@@ -3,16 +3,23 @@
 #define led_amarillo 11
 #define led_rojo 9
 #define boton_1 7
+#define pot_1 A8
+
+int valor_pot=0;                    //inicializamos el valor del potenciometro en 0
 
 void setup() {
   Serial.begin(9600);             //inicializar el puerto serie
   pinMode (led_verde, OUTPUT);    //pone al pin para el led verde en modo salida
   pinMode (led_amarillo, OUTPUT); //pone al pin para el led amarillo en modo salida
   pinMode (led_rojo, OUTPUT);     //pone al pin para el led rojo en modo salida
-    pinMode (boton_1,INPUT);        //pone al pin para el boton en modo entrada
+  pinMode (boton_1,INPUT);        //pone al pin para el boton en modo entrada
 }
+
 void loop() {
+     valor_pot=analogRead(pot_1);  //asigna a valor_pot el valor que se este leyendo del potenciometro
+     
   digitalWrite(led_verde,HIGH);   //se aprende led Verde
+    delay(valor_pot*3);                                 //tiempo de espera para que no pueda apachurrar el boton hasta que haya pasado un tiempo predeterminado
    if(digitalRead(boton_1)==LOW){      //hasta que que el boton cambie a low
     digitalWrite(led_verde,LOW);    //se apaga led verde
     delay(1000);                                    //se da un tiempo de espera de transicion
