@@ -19,8 +19,8 @@ void setup() {
 
 void loop() {
      valor_pot=analogRead(pot_1);  //asigna a valor_pot el valor que se este leyendo del potenciometro
-    digitalWrite(led_verde,HIGH);
-   while(digitalRead(boton_1)==LOW){
+    digitalWrite(led_verde,HIGH);   //enciende el led verde
+   while(digitalRead(boton_1)==LOW){   //asigana a valor_boton_1 como precionado mientras se pulse el boton
     valor_boton_1=LOW;
    }
     if(valor_boton_1==LOW){          //hasta que que el boton cambie a low
@@ -37,9 +37,9 @@ void loop() {
     noTone(bocina);                        //se apaga el tono de la bocina
     delay(2000);
 
-      digitalWrite(led_verde,HIGH);
+      digitalWrite(led_verde,HIGH);           //Enciende el led verde
       delay(valor_pot*10);                    //tiempo de espera para que no pueda precionar el boton hasta que haya pasado un tiempo predeterminado
-      valor_boton_1=HIGH;
+      valor_boton_1=HIGH;                     //cambia el valor del boton a no presionado
    }
   
   
